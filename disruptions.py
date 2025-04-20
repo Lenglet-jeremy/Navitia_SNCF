@@ -1,13 +1,19 @@
+from dotenv import load_dotenv
 import pandas as pd
+
 import requests
 import openpyxl
+
 import json
 import os
+import re
 
-apiKey = 'b19d9854-dbb4-479c-8721-fd29cc8287b9'
+load_dotenv()
+
+apiKey = os.getenv('APIKEY')
 startDate = "20250413T000000"
 stopDate = "20250419T000000"
-url = f'https://api.sncf.com/v1/coverage/sncf/disruptions?since={startDate}&until={stopDate}&'
+url = f'https://api.sncf.com/v1/coverage/sncf/disruptions//?since={startDate}&until={stopDate}&'
 
 def getDatas():
     datas = []
@@ -49,7 +55,7 @@ def xlsxToJson():
 
     # Plage de colonnes à effacer
     minCol = 1
-    maxCol = 8
+    maxCol = 9
 
     # Effacer le contenu existant
     for row in sheet.iter_rows(min_row=2, max_row=sheet.max_row, min_col=minCol, max_col=maxCol):
@@ -80,15 +86,22 @@ def xlsxToJson():
                     longitude = coord.get('lon', '')
                     latitude = coord.get('lat', '')
 
+                    parts = trainId.split(":")
+                    date = next((part for part in parts if re.match(r"\d{4}-\d{2}-\d{2}", part)), "")
+                    print(parts)
+
                     row = {
-                        "disruption_id": disruptionId,
+                        "disruptionId": disruptionId,
                         "cause": stop.get("cause", ""),
-                        "train_id": trainId,
-                        "stop_point_id": stopPoint.get("id", ""),
-                        "base_arrival_time": formattedBaseTime,
-                        "amended_arrival_time": formattedAmendedTime,
-                        "long": longitude,
-                        "lat": latitude
+                        "trainId": trainId,
+                        "stopPointId": stopPoint.get("id", ""),
+                        "baseArrivalTime": baseArrivalTime,
+                        "amendedArrivalTime": amendedArrivalTime,
+                        "formattedBaseArrivalTime": formattedBaseTime,
+                        "formattedAmendedArrivalTime": formattedAmendedTime,
+                        "lon": longitude,
+                        "lat": latitude,
+                        "date": date
                     }
                     rows.append(row)
 
