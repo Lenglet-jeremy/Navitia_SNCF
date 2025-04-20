@@ -4,7 +4,7 @@ import openpyxl
 import json
 import os
 
-apiKey = 'b19d9854-dbb4-479c-8721-fd29cc8287b9'
+apiKey = ''
 startDate = "20250413T000000"
 stopDate = "20250419T000000"
 url = f'https://api.sncf.com/v1/coverage/sncf/disruptions?since={startDate}&until={stopDate}&'
