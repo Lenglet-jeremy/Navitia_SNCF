@@ -8,9 +8,13 @@ import json
 import os
 import re
 
+<<<<<<< HEAD
 load_dotenv()
 
 apiKey = os.getenv('APIKEY')
+=======
+apiKey = ''
+>>>>>>> cac1ccc78bc81d7190cef007ba854d354aca699e
 startDate = "20250413T000000"
 stopDate = "20250419T000000"
 url = f'https://api.sncf.com/v1/coverage/sncf/disruptions//?since={startDate}&until={stopDate}&'
