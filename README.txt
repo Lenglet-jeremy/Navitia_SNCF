@@ -18,17 +18,7 @@ Missions générales en data analyse
    o Nettoyage et mise en forme des données (Python/pandas & Excel).  
    o Gestion des données manquantes, doublons et valeurs aberrantes.  
 
-2. Analyse exploratoire des données (EDA)  
-   o Statistiques descriptives : moyenne, médiane, écart-type, quantiles.  
-   o Distribution des variables : histogrammes, boxplots.  
-   o Corrélations entre variables : matrices, heatmaps.  
-
-3. Modélisation et analyse avancée  
-   o Segmentation (clustering, k-means…).  
-   o Prévision (modèles de séries temporelles).  
-   o Détection d’anomalies.  
-
-4. Data visualisation  
+2. Data visualisation  
    o Création de graphiques pertinents avec Power BI ou Excel.  
    o Conception de dashboards interactifs pour un suivi régulier.  
 
